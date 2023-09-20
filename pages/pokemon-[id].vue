@@ -5,7 +5,6 @@
 
   const route = useRoute();  
   
-  // TODO replace 'any' type
   const { data }: {data: any} = await useFetch('https://pokeapi.co/api/v2/pokemon/' + route.params.id );
   const pokemon = data;
 

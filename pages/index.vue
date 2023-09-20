@@ -2,7 +2,6 @@
   import '~/assets/style.css'
   import { capitalize } from '~/assets/helpers'
 
-  // TODO change 'any' type
   var pokemonList: any = ref([]);
   var loading = ref(true);
   var filterVal = ref('');
