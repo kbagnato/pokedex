@@ -1,9 +1,8 @@
-<!-- TOOD move to individual file -->
 <script setup lang="ts">
   import '~/assets/style.css'
   import '~/assets/pokeCard.css'
   import { capitalize } from '~/assets/helpers'
-  
+
   const route = useRoute();  
   
   // TODO replace 'any' type
@@ -41,6 +40,7 @@
       </div>
     </div>
     
+    <!-- NOTE the following can be extrapolated for the Pokemon's Forms, Moves, Species etc -->
     <div classname="abilities">
       <div class="abil-label">Abilities:</div>
       
@@ -48,7 +48,7 @@
         <span v-if="ability != pokemon.abilities[pokemon.abilities.length - 1]">{{  capitalize(ability.ability.name) }}, </span>
         <span v-else>{{  capitalize(ability.ability.name) }}</span>
         
-        <!-- NOTE these link to the API, could be useful one day-->
+        <!-- NOTE these link to the API, could be useful one day -->
         <!-- <NuxtLink
           :to="`${ability.ability.url}`" target="_blank">
           {{  ability.ability.name }}
