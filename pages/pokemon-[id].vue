@@ -10,6 +10,10 @@
   const { data }: {data: any} = await useFetch('https://pokeapi.co/api/v2/pokemon/' + route.params.id );
   const pokemon = data;
 
+  function capitalized(input: string) {
+    return input.charAt(0).toUpperCase() + input.slice(1);
+  }
+
   function search(searchVal: string) {
     console.log(searchVal);
   }
@@ -23,7 +27,7 @@
 
 <template>
   <!-- TODO move to Header component -->
-  <a href="/">Home</a>
+  <a class="link" href="/">Home</a>
   <span class="link" @click="randomPoke()">Random</span>
   <input v-model="searchVal" placeholder="Search by name or id"/> 
   <hr/>
@@ -35,32 +39,33 @@
   <!-- TODO add previous/next buttons -->
 
   <div class="poke-card center">
-    <h1>
-      {{ pokemon.name }} (# {{ pokemon.id }})
-    </h1>
-
-    <img :src="`${pokemon.sprites.front_default}`" />
-    
-    <div id="stats-container">
-      <div class="stat">
-        <!-- converted to match units from Bulbagarden.net -->
-        Height: {{ pokemon.height / 10}} m
-      </div>
-      <div class="stat float-right">
-          Weight: {{ pokemon.weight / 10 }} kg
-      </div>
+    <div class="name">
+      {{ capitalized(pokemon.name) }} (#{{ pokemon.id }})
     </div>
 
+    <img :src="`${pokemon.sprites.front_default}`" />
+
+
+    <div class="stats-container">
+      <div class="stat">
+        <!-- converted to match units from Bulbagarden.net -->
+        <span class="stat-label">Height:</span>
+        <span class="stat-value">{{ pokemon.height / 10}} m</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Weight:</span>
+        <span class="stat-value">{{ pokemon.weight / 10}} kg</span>
+      </div>
+    </div>
+    
     <div classname="abilities">
-      <h3>
-        Abilities:
-      </h3>
+      <div class="abil-label">Abilities:</div>
 
-      <!-- TODO remove trailing comma -->
-      <span v-for="ability in pokemon.abilities" v-bind:key="ability">
-        {{  ability.ability.name }}, 
-
-        <!-- NOTE these link to the API, could be useful -->
+      <span v-for="ability in pokemon.abilities" v-bind:key="ability" class="abil-value">
+        <span v-if="ability != pokemon.abilities[pokemon.abilities.length - 1]">{{  capitalized(ability.ability.name) }}, </span>
+        <span v-else>{{  capitalized(ability.ability.name) }}</span>
+        
+        <!-- NOTE these link to the API, could be useful one day-->
         <!-- <NuxtLink
           :to="`${ability.ability.url}`" target="_blank">
           {{  ability.ability.name }}

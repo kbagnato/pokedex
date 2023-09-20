@@ -6,17 +6,64 @@ table, th, td {
   float: right;
 }
 
-#stats-container {
-  background-color: pink;
+.center {
+  margin: auto;
+  width: 50%;
+  text-align: center;
 }
 
 .poke-card {
   background-color: lightblue;
-  width: 600px;
+  width: 800px;
   height: 600px;
   border-radius: 25px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.center {
-  margin: auto;
-  width: 50%;
+
+.poke-card img {
+  height: 10em;
+  width: 10em;
+}
+
+.name {
+  font-size: 2.5em;
+  padding-top: 0.6em;
+}
+
+.stats-container {
+  display: inline-block;
+  width: auto;
+}
+
+.stat {
+  background-color: pink;
+ 
+  display: inline-block;
+  height: 1em;
+  width: 16em;
+  padding: 3em;
+  
+  border: solid 3px black;
+  border-radius: 20px;
+}
+
+.stat-label {
+  font-size: 1.4em;
+  font-style: italic;
+  padding-right: 1em;
+}
+
+.stat-value {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.abil-label {
+  font-size: 1.4em;
+  font-style: italic;
+  padding-top: 2em;
+}
+
+.abil-value {
+  font-size: 2em;
 }
