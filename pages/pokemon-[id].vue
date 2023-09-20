@@ -32,19 +32,21 @@
   <span class="link" @click="randomPoke()">Random</span>
   <input v-model="searchVal" placeholder="Search by name or id"/> 
   <hr/>
-  
-  <!-- TODO handle if (!pokemon) redirect to custom error  -->
-  <!-- <span v-if="pokemon">
-  </span> -->
-  
-  
-  <div class="poke-card center">
+  <!-- end header -->
+
+  <!-- show error if pokemon not found -->
+  <div v-if="pokemon == undefined">
+    <div class="error-card center">
+      <div class='error-label'>Pokemon not found.</div>
+    </div>  
+  </div>
+
+  <div v-else class="poke-card center">
     <div class="name">
       {{ capitalized(pokemon.name) }} (#{{ pokemon.id }})
     </div>
     
     <img :src="`${pokemon.sprites.front_default}`" />
-    
     
     <div class="stats-container">
       <div class="stat">
@@ -77,6 +79,6 @@
   <!-- prev/next buttons -->
   <div class="center">
     <div class="change-poke" @click="navigateTo('pokemon-' + (pokemon.id - 1))">Previous</div>
-    <div class="change-poke" @click="navigateTo('pokemon-' + (pokemon.id + 1))">Next</div>
+    <div class="change-poke" @click="navigateTo('pokemon-' + (pokemon ? pokemon.id + 1 : 1))">Next</div>
   </div>
 </template>
