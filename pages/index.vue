@@ -1,25 +1,29 @@
 <script setup lang="ts">
-
   import '~/assets/style.css'
-  import { ref, onMounted } from 'vue';
   import { capitalize } from '~/assets/helpers'
-  
-  var loading = ref(false);
-  var filterVal = ref('');
 
-  // TODO change this 'any' type, ideally implement interface
-  // interface Pokemon {
-  //   id: number;
-  //   name: string;
-  // }
-  // const { data }: {data: any} = await useFetch('https://pokeapi.co/api/v2/pokemon/?limit=60');
+  // TODO change 'any' type
+  var pokemonList: any = ref([]);
+  var loading = ref(true);
+  var filterVal = ref('');
   
-  // TODO move to ajax for faster loading; add loading ui
-  var pokemonList: any[] = [];
-  for (let i = 1; i <= 60; i++) {
-    const { data }: {data: any} = await useFetch('https://pokeapi.co/api/v2/pokemon/' + i);
-    pokemonList.push(data);
+  // load pokemon into memory
+  function loadPoke() {
+    loading.value = true;
+    for (let i = 1; i <= 60; i++) {
+      const { data }: {data: any} = useFetch('https://pokeapi.co/api/v2/pokemon/' + i);
+      pokemonList.value.push(data);
+    }  
+    loading.value = false;
+
   }
+
+  onMounted(() => {
+    // nextTick used because of bug where data doesn't load initally - see here (https://stackoverflow.com/a/75798077)
+    nextTick(async() => {
+      loadPoke();
+    })
+  })
 
 </script>
 
@@ -30,21 +34,25 @@
     <div class="title">Welcome to the Pokedex</div>
     <span class="subtitle">By Kevin Bagnato</span>
     
+    <input id="filter" class="center" v-model="filterVal" placeholder="Filter by name"/> 
+    
     <div v-if="loading">
       <p>Loading...</p>
     </div>
-    
+
     <div v-else>
-    <!-- search bar ~ show only pokemon.filter(search val) -->
-    <input v-model="filterVal" placeholder="Filter by name"/> 
-
       <div v-for="pokemon in pokemonList" v-bind:key="pokemon">
-        <div class="poke-row" @click="navigateTo('pokemon-' + pokemon.value.id)">
-          <img :src="`${pokemon.value.sprites.front_default}`" />
-          <div class="poke-name">{{capitalize(pokemon.value.name)}}</div>
-        </div>
+        
+        <!-- filter by name -->
+        <span v-if="pokemon.value.name.toLowerCase().includes(filterVal.toLowerCase())">
+          <div class="poke-row" @click="navigateTo('pokemon-' + pokemon.value.id)">
+            <img :src="`${pokemon.value.sprites.front_default}`" />
+            <div class="poke-name">{{capitalize(pokemon.value.name)}}</div>
+          </div>
+        </span>
+        
       </div>
+    </div> 
 
-    </div>
   </div>
 </template>

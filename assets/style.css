@@ -16,6 +16,13 @@
 
 }
 
+#filter {
+  display: block;
+  width: 30%;
+  font-size: 1em;
+  margin-top: 1em;
+}
+
 .title {
   font-size: 2.5em;
   padding-top: 0.6em;
