@@ -9,6 +9,7 @@
 .poke-card img {
   height: 10em;
   width: 10em;
+  margin: 2em;
 }
 
 .name {
@@ -64,7 +65,6 @@
   
   border: solid 3px black;
   border-radius: 20px;
-
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

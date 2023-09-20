@@ -25,8 +25,8 @@
 <template>
   <Nav />
   
-  <div>
-    <h1>Welcome to the Pokedex</h1>
+  <div class="index center">
+    <div class="title">Welcome to the Pokedex</div>
     <span class="subtitle">By Kevin Bagnato</span>
     
     <div v-if="loading">
@@ -37,38 +37,13 @@
     <!-- search bar ~ show only pokemon.filter(search val) -->
     <input v-model="filterVal" placeholder="Filter by name"/> 
 
-    <table>
-      <tr>
-        <th>Id</th>
-        <th>Pic</th>
-        <th>Name</th>
-      </tr>
-      
-      <!-- TODO add pokemonList.filterByName(filterVal) -->
-      <tr v-for="pokemon in pokemonList" v-bind:key="pokemon">
-        <td>
-          <!-- id, extracted from url -->
-          url
-          <!-- {{  pokemon.url.split('/')[6] }} -->
-        </td>
-        <td>
-          sprite
-          <!-- {{  pokemon.sprites.front_default }} -->
-        </td>
-        <td>
-          {{  pokemon }}
-        </td>
-      </tr>
-    </table>
+      <div v-for="pokemon in pokemonList" v-bind:key="pokemon">
+        <div class="poke-row" @click="navigateTo('pokemon-' + pokemon.value.id)">
+          <img :src="`${pokemon.value.sprites.front_default}`" />
+          <div class="poke-name">{{capitalize(pokemon.value.name)}}</div>
+        </div>
+      </div>
 
-
-    
-    
-    <!-- table of the top 60 pokemon 
-          thumbnail  |  name (href='/<pokemon id'>)
-            maybe coordinate row color to pokemon class
-      -->
-    
     </div>
   </div>
 </template>
