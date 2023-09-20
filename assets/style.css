@@ -1,0 +1,22 @@
+table, th, td {
+  border:1px solid black;
+}
+
+.float-right {
+  float: right;
+}
+
+#stats-container {
+  background-color: pink;
+}
+
+.poke-card {
+  background-color: lightblue;
+  width: 600px;
+  height: 600px;
+  border-radius: 25px;
+}
+.center {
+  margin: auto;
+  width: 50%;
+}
