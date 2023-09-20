@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import '~/assets/nav.css';
+
   const TOTAL_POKEMON = 1010;
   var searchVal = ref('');
 
@@ -8,26 +10,35 @@
     navigateTo('pokemon-' + rndId);
   }
 
-  // allow user to search by id/name
+  // search pokemon by id/name
   function search() {
     console.log(searchVal.value);
-    navigateTo('pokemon-' + searchVal.value);
+    if (searchVal.value == "") {
+      window.alert('No search term entered');
+    }
+    else {
+      navigateTo('pokemon-' + searchVal.value);
+    }
   }
 </script>
 
 <template>
-  <a class="link" href="/">Home</a>
+  <div class="nav">
 
-  <span class="link" @click="randomPoke()">Random</span>
-  
-  <input
-    id="searchInput"
-    v-model="searchVal"
-    @keyup.enter="search()"
-    placeholder="Search by name or id"
-  /> 
-  
-  <span class="search-btn" @click="search()">Search</span>
-
-  <hr/>
+    <span class="link" @click="navigateTo('/')">Home</span>
+    
+    <span class="link" @click="randomPoke()">Random</span>
+    
+    <!-- id="searchInput" -->
+    <input
+      class="link"
+      v-model="searchVal"
+      @keyup.enter="search()"
+      placeholder="Enter name or id"
+    /> 
+    
+    <span class="search-btn" @click="search()">Go</span>
+    
+    <hr/>
+  </div>
 </template>

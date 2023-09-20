@@ -1,0 +1,20 @@
+.nav {
+  width: 800px;
+  margin: auto;
+  width: 70%;
+}
+
+.link {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+  margin: 0.5em 3em;
+}
+
+.link input {
+  margin-right: 0em !important;
+}
+
+.search-btn {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 0;
+}
