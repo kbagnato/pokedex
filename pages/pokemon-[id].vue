@@ -1,6 +1,7 @@
 <!-- TOOD move to individual file -->
 <script setup lang="ts">
   import '~/assets/style.css'
+  import '~/assets/pokeCard.css'
   
   const route = useRoute();  
   const TOTAL_POKEMON = 1010;
