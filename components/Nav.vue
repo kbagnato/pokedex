@@ -24,12 +24,10 @@
 
 <template>
   <div class="nav">
-
     <span class="link" @click="navigateTo('/')">Home</span>
     
     <span class="link" @click="randomPoke()">Random</span>
     
-    <!-- id="searchInput" -->
     <input
       class="link"
       v-model="searchVal"
