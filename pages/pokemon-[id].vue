@@ -31,21 +31,20 @@
   <span class="link" @click="randomPoke()">Random</span>
   <input v-model="searchVal" placeholder="Search by name or id"/> 
   <hr/>
-
+  
   <!-- TODO handle if (!pokemon) redirect to custom error  -->
   <!-- <span v-if="pokemon">
   </span> -->
   
-  <!-- TODO add previous/next buttons -->
-
+  
   <div class="poke-card center">
     <div class="name">
       {{ capitalized(pokemon.name) }} (#{{ pokemon.id }})
     </div>
-
+    
     <img :src="`${pokemon.sprites.front_default}`" />
-
-
+    
+    
     <div class="stats-container">
       <div class="stat">
         <!-- converted to match units from Bulbagarden.net -->
@@ -60,7 +59,7 @@
     
     <div classname="abilities">
       <div class="abil-label">Abilities:</div>
-
+      
       <span v-for="ability in pokemon.abilities" v-bind:key="ability" class="abil-value">
         <span v-if="ability != pokemon.abilities[pokemon.abilities.length - 1]">{{  capitalized(ability.ability.name) }}, </span>
         <span v-else>{{  capitalized(ability.ability.name) }}</span>
@@ -74,4 +73,9 @@
     </div>
   </div>
 
+  <!-- prev/next buttons -->
+  <div class="center">
+    <div class="change-poke" @click="navigateTo('pokemon-' + (pokemon.id - 1))">Previous</div>
+    <div class="change-poke" @click="navigateTo('pokemon-' + (pokemon.id + 1))">Next</div>
+  </div>
 </template>

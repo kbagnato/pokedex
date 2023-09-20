@@ -67,3 +67,19 @@ table, th, td {
 .abil-value {
   font-size: 2em;
 }
+
+.change-poke {
+  background-color: lightgreen;
+ 
+  display: inline-block;
+  width: 6em;
+  padding: 1em;
+  margin: 1em 3em;
+  
+  border: solid 3px black;
+  border-radius: 20px;
+}
+
+.change-poke:hover {
+  background-color: greenyellow;
+}
