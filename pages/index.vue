@@ -2,6 +2,7 @@
 
   import '~/assets/style.css'
   import { ref, onMounted } from 'vue';
+  import { capitalize } from '~/assets/helpers'
   
   var loading = ref(false);
   var filterVal = ref('');

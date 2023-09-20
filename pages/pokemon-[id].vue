@@ -2,6 +2,7 @@
 <script setup lang="ts">
   import '~/assets/style.css'
   import '~/assets/pokeCard.css'
+  import { capitalize } from '~/assets/helpers'
   
   const route = useRoute();  
   
@@ -9,9 +10,6 @@
   const { data }: {data: any} = await useFetch('https://pokeapi.co/api/v2/pokemon/' + route.params.id );
   const pokemon = data;
 
-  function capitalized(input: string) {
-    return input.charAt(0).toUpperCase() + input.slice(1);
-  }
 </script>
 
 <template>
@@ -26,7 +24,7 @@
 
   <div v-else class="poke-card center">
     <div class="name">
-      {{ capitalized(pokemon.name) }} (#{{ pokemon.id }})
+      {{ capitalize(pokemon.name) }} (#{{ pokemon.id }})
     </div>
     
     <img :src="`${pokemon.sprites.front_default}`" />
@@ -47,8 +45,8 @@
       <div class="abil-label">Abilities:</div>
       
       <span v-for="ability in pokemon.abilities" v-bind:key="ability" class="abil-value">
-        <span v-if="ability != pokemon.abilities[pokemon.abilities.length - 1]">{{  capitalized(ability.ability.name) }}, </span>
-        <span v-else>{{  capitalized(ability.ability.name) }}</span>
+        <span v-if="ability != pokemon.abilities[pokemon.abilities.length - 1]">{{  capitalize(ability.ability.name) }}, </span>
+        <span v-else>{{  capitalize(ability.ability.name) }}</span>
         
         <!-- NOTE these link to the API, could be useful one day-->
         <!-- <NuxtLink
