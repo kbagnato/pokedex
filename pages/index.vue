@@ -1,7 +1,9 @@
 <script setup lang="ts">
 
   import '~/assets/style.css'
+  import { ref, onMounted } from 'vue';
   
+  var loading = ref(false);
   var filterVal = ref('');
 
   // TODO change this 'any' type, ideally implement interface
@@ -27,6 +29,11 @@
     <h1>Welcome to the Pokedex</h1>
     <span class="subtitle">By Kevin Bagnato</span>
     
+    <div v-if="loading">
+      <p>Loading...</p>
+    </div>
+    
+    <div v-else>
     <!-- search bar ~ show only pokemon.filter(search val) -->
     <input v-model="filterVal" placeholder="Filter by name"/> 
 
@@ -62,6 +69,6 @@
             maybe coordinate row color to pokemon class
       -->
     
-    <!-- <NuxtWelcome /> -->
+    </div>
   </div>
 </template>
