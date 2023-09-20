@@ -21,6 +21,8 @@
 </script>
 
 <template>
+  <Nav />
+  
   <div>
     <h1>Welcome to the Pokedex</h1>
     <span class="subtitle">By Kevin Bagnato</span>

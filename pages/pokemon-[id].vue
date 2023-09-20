@@ -4,9 +4,7 @@
   import '~/assets/pokeCard.css'
   
   const route = useRoute();  
-  const TOTAL_POKEMON = 1010;
-  var searchVal = ref('');
-
+  
   // TODO replace 'any' type
   const { data }: {data: any} = await useFetch('https://pokeapi.co/api/v2/pokemon/' + route.params.id );
   const pokemon = data;
@@ -14,25 +12,10 @@
   function capitalized(input: string) {
     return input.charAt(0).toUpperCase() + input.slice(1);
   }
-
-  function search(searchVal: string) {
-    console.log(searchVal);
-  }
-
-  // send user to random pokemon profile
-  function randomPoke() {
-    let rndId = Math.floor(Math.random() * TOTAL_POKEMON) + 1;
-    navigateTo('pokemon-' + rndId);
-  }
 </script>
 
 <template>
-  <!-- TODO move to Header component -->
-  <a class="link" href="/">Home</a>
-  <span class="link" @click="randomPoke()">Random</span>
-  <input v-model="searchVal" placeholder="Search by name or id"/> 
-  <hr/>
-  <!-- end header -->
+  <Nav />
 
   <!-- show error if pokemon not found -->
   <div v-if="pokemon == undefined">
